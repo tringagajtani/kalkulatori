@@ -5,8 +5,10 @@ Një kalkulator i thjeshtë me backend Node.js/Express dhe frontend React (Vite)
 ## Struktura e projektit
 
 ```
-├── backend/          # API server (Express)
+├── api/              # Vercel serverless functions
+├── backend/          # API server lokal (Express)
 ├── frontend/         # React app (Vite)
+├── lib/              # Logjika e përbashkët e kalkulatorit
 └── README.md
 ```
 
@@ -90,3 +92,27 @@ Hapni shfletuesin në: **http://localhost:5173**
 1. Shkruani dy numra në fushat e input-it
 2. Klikoni një nga butonat `+`, `-`, `*`, `/`
 3. Rezultati shfaqet poshtë (ose mesazh gabimi nëse diçka shkon keq)
+
+## Deploy në Vercel
+
+Projekti është konfiguruar për Vercel:
+
+- **Frontend** — buildohet nga `frontend/` (Vite → `frontend/dist`)
+- **API** — `/api/calculate` ekzekutohet si serverless function (folderi `api/`)
+
+### Hapat
+
+1. Ngarko projektin në GitHub
+2. Shko te [vercel.com](https://vercel.com) → **Add New Project**
+3. Importo repozitorin
+4. **Root Directory** — lëre bosh (root i projektit)
+5. Vercel lexon automatikisht `vercel.json` — kliko **Deploy**
+
+Pas deploy-it, frontend-i dhe API-ja funksionojnë në të njëjtin domain (p.sh. `https://projekti.vercel.app/api/calculate`).
+
+### Lokal vs Vercel
+
+| Mjedis | API |
+|--------|-----|
+| Lokal | Express në portin 3001 (proxy përmes Vite) |
+| Vercel | Serverless function në `api/calculate.js` |

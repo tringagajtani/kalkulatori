@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const API_URL = "http://localhost:3001/api/calculate";
+const API_URL = "/api/calculate";
 
 const OPERATIONS = {
   "+": "add",
